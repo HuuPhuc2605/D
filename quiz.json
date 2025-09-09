@@ -1,0 +1,54 @@
+[ 
+  { 
+    "quiz_id": "quiz-001", 
+    "name": "Java Basics Quiz", 
+    "score": 100, 
+    "questions": [ 
+      { 
+        "question_id": "Q001", 
+        "text": "What is the output of System.out.println(2 + \"2\") in Java?", 
+        "options": ["4", "22", "Error", "None of the above"], 
+        "correct_answer": "22" 
+      }, 
+      { 
+        "question_id": "Q002", 
+        "text": "Which keyword is used to define a constant variable in Java?", 
+        "options": ["const", "static", "final", "var"], 
+        "correct_answer": "final" 
+      } 
+    ], 
+    "category": {  
+       "category_id": "C001",  
+       "name": "Java Programming"  
+   } 
+  } , 
+  {
+    "quiz_id": "quiz-002",
+    "name": "Advanced Java Quiz",
+    "score": 150,
+    "questions": [
+      {
+        "question_id": "Q101",
+        "text": "Which of the following is NOT a feature of Java?",
+        "options": ["Object-Oriented", "Platform Dependent", "Automatic Memory Management", "Multithreaded"],
+        "correct_answer": "Platform Dependent"
+      },
+      {
+        "question_id": "Q102",
+        "text": "Which package contains the Scanner class in Java?",
+        "options": ["java.util", "java.io", "java.lang", "java.net"],
+        "correct_answer": "java.util"
+      },
+      {
+        "question_id": "Q103",
+        "text": "What is the default value of a boolean variable in Java?",
+        "options": ["true", "false", "null", "0"],
+        "correct_answer": "false"
+      }
+    ],
+    "category": {
+      "category_id": "C002",
+      "name": "Core Java"
+    }
+	}
+] 
