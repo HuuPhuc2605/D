@@ -1,0 +1,129 @@
+package lehuuphuc_22713601;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class NhanVienGui extends JFrame {
+	private Box box;
+	private JLabel lblTieuDe;
+	private JPanel jP1;
+	private JLabel lblMa;
+	private JTextField txtMa;
+	private JPanel jP2;
+	private JLabel lblHo;
+	private JTextField txtHo;
+	private JLabel lblTen;
+	private JTextField txtTen;
+	private JPanel jP3;
+	private JLabel lblTuoi;
+	private JTextField txtTuoi;
+	private JLabel lblPhai;
+	private JRadioButton jrbNu;
+	private JPanel jP4;
+	private JLabel lblLuong;
+	private JTextField txtLuong;
+	private JPanel jP5;
+	private JLabel lblPhongban;
+	private JTable table;
+	private DefaultTableModel tableModel;
+	private JPanel jPanelCenter;
+	private JPanel jPanelShoth;
+	private JLabel lblTim;
+
+	private JButton btnTim;
+	private JTextField txtTim;
+	private JButton btnThem;
+	private JButton btnXoaT;
+	private JButton btnXoa;
+	private JButton btnLuu;
+	private JButton btnSua;
+	private QuanLyNhanVien dsnv;
+
+	private JComboBox<String> cbbPhongBan;
+	private JPanel p;
+	private JLabel lbl;
+	private JTextField txtPhai;
+	public static final String tenfile = "data//nhanvien.txt";
+
+	public NhanVienGui(QuanLyNhanVien danhSachNhanVien) throws Exception {
+		super("^_^");
+
+		// Vung nourth
+		box = new Box(BoxLayout.Y_AXIS);
+		box.add(lblTieuDe = new JLabel("THONG TIN NHAN VIEN"));
+		jP1 = new JPanel();
+		jP1.add(lblMa = new JLabel("Ma nhan vien: "));
+		jP1.add(txtMa = new JTextField(60));
+		box.add(jP1);
+		jP2 = new JPanel();
+		jP2.add(lblHo = new JLabel("Ho: "));
+		jP2.add(txtHo = new JTextField(20));
+		jP2.add(lblTen = new JLabel("Ten nhan vien: "));
+		jP2.add(txtTen = new JTextField(30));
+		box.add(jP2);
+		jP3 = new JPanel();
+		jP3.add(lblTuoi = new JLabel("Tuoi: "));
+		jP3.add(txtTuoi = new JTextField(30));
+		jP3.add(lblPhai = new JLabel("Phai: "));
+		jP3.add(txtPhai = new JTextField(20));
+		box.add(jP3);
+		jP4 = new JPanel();
+		jP4.add(lblLuong = new JLabel("Tien luong: "));
+		jP4.add(txtLuong = new JTextField(60));
+		box.add(jP4);
+		jP5 = new JPanel();
+		jP5.add(lblPhongban = new JLabel("Phong ban: "));
+
+		String[] phongBan = { "Phong nhan su", "Phong tai chinh", "Phong san xuat", "Phong marketing" };
+		cbbPhongBan = new JComboBox<String>(phongBan);
+
+		jP5.add(cbbPhongBan);
+		lblHo.setPreferredSize(lblMa.getPreferredSize());
+		lblLuong.setPreferredSize(lblMa.getPreferredSize());
+		lblTuoi.setPreferredSize(lblMa.getPreferredSize());
+		lblHo.setPreferredSize(lblMa.getPreferredSize());
+		lblPhongban.setPreferredSize(lblMa.getPreferredSize());
+		box.add(jP5);
+		add(box, BorderLayout.NORTH);
+// Vung center
+		jPanelCenter = new JPanel();
+		String[] col = "MaNv; Ho; Ten; Phai; Tuoi; Phong; TienLuong".split(";");
+		tableModel = new DefaultTableModel(col, 0);
+		table = new JTable(tableModel);
+		table.setRowHeight(25);
+		//
+		JScrollPane jScrollPane = new JScrollPane(table);
+		jScrollPane.setPreferredSize(new Dimension(700, 300));
+		//
+		jPanelCenter.add(jScrollPane);
+		add(jPanelCenter, BorderLayout.CENTER);
+// Vung south
+		jPanelShoth = new JPanel();
+		jPanelShoth.add(lblTim = new JLabel("Nhap ma so can tim: "));
+		jPanelShoth.add(txtTim = new JTextField(10));
+		jPanelShoth.add(btnTim = new JButton("Tim"));
+		jPanelShoth.add(btnThem = new JButton("Them"));
+		jPanelShoth.add(btnXoaT = new JButton("Xoa Trang"));
+		jPanelShoth.add(btnXoa = new JButton("Xoa"));
+		jPanelShoth.add(btnLuu = new JButton("Luu"));
+		jPanelShoth.add(btnSua = new JButton("Sua"));
+		add(jPanelShoth, BorderLayout.SOUTH);
+
+setSize(700, 600);
+}
+	
+}
+

@@ -1,0 +1,12 @@
+package lehuuphuc_22713601;
+
+public class NhanVien {
+	private String maNV;
+	private String ho;
+	private String ten;
+	private int tuoi;
+	private String phai;
+	private String phong;
+	private double tienLuong;
+
+}

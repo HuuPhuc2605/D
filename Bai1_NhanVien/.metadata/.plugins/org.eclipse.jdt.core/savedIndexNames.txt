@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+D:\Semester_1_2025-2026\2.Event_driven_Programming_with_Java_Technology\OnTap_GiuaKi\Bai1_NhanVien\.metadata\.plugins\org.eclipse.jdt.core
+2063376482.index
+1865797976.index
+2440619699.index

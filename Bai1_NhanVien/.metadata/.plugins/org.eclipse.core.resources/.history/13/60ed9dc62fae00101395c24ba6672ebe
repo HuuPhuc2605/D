@@ -1,0 +1,222 @@
+package lehuuphuc_22713601;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class NhanVienGui extends JFrame implements ActionListener {
+	private Box box;
+	private JLabel lblTieuDe;
+	private JPanel jP1;
+	private JLabel lblMa;
+	private JTextField txtMa;
+	private JPanel jP2;
+	private JLabel lblHo;
+	private JTextField txtHo;
+	private JLabel lblTen;
+	private JTextField txtTen;
+	private JPanel jP3;
+	private JLabel lblTuoi;
+	private JTextField txtTuoi;
+	private JLabel lblPhai;
+	private JRadioButton jrbNu;
+	private JPanel jP4;
+	private JLabel lblLuong;
+	private JTextField txtLuong;
+	private JPanel jP5;
+	private JLabel lblPhongban;
+	private JTable table;
+	private DefaultTableModel tableModel;
+	private JPanel jPanelCenter;
+	private JPanel jPanelShoth;
+	private JLabel lblTim;
+
+	private JButton btnTim;
+	private JTextField txtTim;
+	private JButton btnThem;
+	private JButton btnXoaT;
+	private JButton btnXoa;
+	private JButton btnLuu;
+	private JButton btnSua;
+	private QuanLyNhanVien dsnv;
+
+	private JComboBox<String> cbbPhongBan;
+	private JPanel p;
+	private JLabel lbl;
+	private JTextField txtPhai;
+	
+
+	public NhanVienGui(QuanLyNhanVien danhSachNhanVien) throws Exception {
+		super("^_^");
+this.dsnv = danhSachNhanVien;
+		// Vung nourth
+		box = new Box(BoxLayout.Y_AXIS);
+		box.add(lblTieuDe = new JLabel("THONG TIN NHAN VIEN"));
+		jP1 = new JPanel();
+		jP1.add(lblMa = new JLabel("Ma nhan vien: "));
+		jP1.add(txtMa = new JTextField(60));
+		box.add(jP1);
+		jP2 = new JPanel();
+		jP2.add(lblHo = new JLabel("Ho: "));
+		jP2.add(txtHo = new JTextField(20));
+		jP2.add(lblTen = new JLabel("Ten nhan vien: "));
+		jP2.add(txtTen = new JTextField(30));
+		box.add(jP2);
+		jP3 = new JPanel();
+		jP3.add(lblTuoi = new JLabel("Tuoi: "));
+		jP3.add(txtTuoi = new JTextField(30));
+		jP3.add(lblPhai = new JLabel("Phai: "));
+		jP3.add(txtPhai = new JTextField(20));
+		box.add(jP3);
+		jP4 = new JPanel();
+		jP4.add(lblLuong = new JLabel("Tien luong: "));
+		jP4.add(txtLuong = new JTextField(60));
+		box.add(jP4);
+		jP5 = new JPanel();
+		jP5.add(lblPhongban = new JLabel("Phong ban: "));
+
+		String[] phongBan = { "Phong nhan su", "Phong tai chinh", "Phong san xuat", "Phong marketing" };
+		cbbPhongBan = new JComboBox<String>(phongBan);
+
+		jP5.add(cbbPhongBan);
+		lblHo.setPreferredSize(lblMa.getPreferredSize());
+		lblLuong.setPreferredSize(lblMa.getPreferredSize());
+		lblTuoi.setPreferredSize(lblMa.getPreferredSize());
+		lblHo.setPreferredSize(lblMa.getPreferredSize());
+		lblPhongban.setPreferredSize(lblMa.getPreferredSize());
+		box.add(jP5);
+		add(box, BorderLayout.NORTH);
+// Vung center
+		jPanelCenter = new JPanel();
+		String[] col = "MaNv; Ho; Ten; Phai; Tuoi; Phong; TienLuong".split(";");
+		tableModel = new DefaultTableModel(col, 0);
+		table = new JTable(tableModel);
+		table.setRowHeight(25);
+		//
+		JScrollPane jScrollPane = new JScrollPane(table);
+		jScrollPane.setPreferredSize(new Dimension(700, 300));
+		//
+		jPanelCenter.add(jScrollPane);
+		add(jPanelCenter, BorderLayout.CENTER);
+// Vung south
+		jPanelShoth = new JPanel();
+		jPanelShoth.add(lblTim = new JLabel("Nhap ma so can tim: "));
+		jPanelShoth.add(txtTim = new JTextField(10));
+		jPanelShoth.add(btnTim = new JButton("Tim"));
+		jPanelShoth.add(btnThem = new JButton("Them"));
+		jPanelShoth.add(btnXoaT = new JButton("Xoa Trang"));
+		jPanelShoth.add(btnXoa = new JButton("Xoa"));
+		jPanelShoth.add(btnLuu = new JButton("Luu"));
+		jPanelShoth.add(btnSua = new JButton("Sua"));
+		add(jPanelShoth, BorderLayout.SOUTH);
+
+setSize(700, 600);
+btnThem.addActionListener(this);
+
+}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		Object o = e.getSource();
+		if(o == btnThem) {
+			themNhanVien();
+		}
+	}
+	private void themNhanVien() {
+		try {
+			String ma = txtMa.getText().trim();
+			String ho = txtHo.getText().trim();
+			String ten = txtTen.getText().trim();
+			String phai = txtPhai.getText().trim();
+			String tuoiStr = txtTuoi.getText().trim();
+			String luongStr = txtLuong.getText().trim();
+			String phong = (String) cbbPhongBan.getSelectedItem();
+
+			// ====== 🧩 KIỂM TRA HỢP LỆ DỮ LIỆU ======
+
+			// 1️⃣ Kiểm tra rỗng
+			if (ma.isEmpty() || ho.isEmpty() || ten.isEmpty() || tuoiStr.isEmpty() || luongStr.isEmpty() || phai.isEmpty()) {
+				JOptionPane.showMessageDialog(this, " Không được để trống thông tin!");
+				return;
+			}
+
+			// 2️⃣ Regex mã nhân viên (VD: NV001)
+			if (!ma.matches("^([NV]\\d{3})")) {
+				JOptionPane.showMessageDialog(this, " Mã nhân viên phải có dạng NVxxx (VD: NV001)");
+				return;
+			}
+
+			// 3️⃣ Họ và tên chỉ chứa chữ cái
+			if (!ho.matches("^([A-ZÀ-Ỹ][a-zà-ỹ]+)(\\s[A-ZÀ-Ỹ][a-zà-ỹ]+){1}$") || !ten.matches("^([A-ZÀ-Ỹ][a-zà-ỹ]+)(\\s[A-ZÀ-Ỹ][a-zà-ỹ]+)*$")) {
+				JOptionPane.showMessageDialog(this, " Họ và tên chỉ được chứa chữ cái!");
+				return;
+			}
+			if(!phai.matches("^(?i)Nam|Nu|Nữ|F|M|f|m") ) {
+				JOptionPane.showMessageDialog(this, "Phái là Nam hoặc Nữ");
+				return;
+			}
+
+			// 4️⃣ Tuổi là số và trong khoảng 18–60
+			int tuoi;
+			try {
+				tuoi = Integer.parseInt(tuoiStr);
+				if (tuoi < 18 || tuoi > 60) {
+					JOptionPane.showMessageDialog(this, "Tuổi phải từ 18 đến 60!");
+					return;
+				}
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(this, "❌ Tuổi phải là số nguyên!");
+				return;
+			}
+
+			// 5️⃣ Lương là số dương
+			double luong;
+			try {
+				luong = Double.parseDouble(luongStr);
+				if (luong <= 0) {
+					JOptionPane.showMessageDialog(this, " Lương phải lớn hơn 0!");
+					return;
+				}
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(this, "Lương phải là số hợp lệ!");
+				return;
+			}
+
+			// 6️⃣ Kiểm tra phòng ban
+			if (phong == null || phong.trim().isEmpty()) {
+				JOptionPane.showMessageDialog(this, "Vui lòng chọn phòng ban!");
+				return;
+			}
+
+			// ====== ✅ Nếu hợp lệ thì thêm vào danh sách ======
+			NhanVien nv = new NhanVien(ma, ho, ten, tuoi, phai, phong, luong);
+			if (dsnv.ThemNhanVien(nv)) {
+				tableModel.addRow(new Object[] { ma, ho, ten, phai, tuoi, phong, luong });
+				JOptionPane.showMessageDialog(this, "✅ Thêm thành công!");
+			} else {
+				JOptionPane.showMessageDialog(this, "⚠️ Mã nhân viên đã tồn tại!");
+			}
+
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(this, "❌ Lỗi khi thêm: " + ex.getMessage());
+		}
+	}
+	
+}
+
